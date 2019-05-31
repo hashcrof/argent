@@ -1,0 +1,19 @@
+{
+  "name": "argent",
+  "version": "1.0.0",
+  "description": "A Simple Banking Application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --config webpack.dev.config.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack-cli": "^3.3.2",
+    "webpack-dev-server": "^3.5.0"
+  },
+  "dependencies": {
+    "webpack": "^4.32.2"
+  }
+}
