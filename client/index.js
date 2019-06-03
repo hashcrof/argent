@@ -7,8 +7,10 @@ newDiv.appendChild(newContent);
 document.getElementById('root').appendChild(newDiv);
 const buttons = document.getElementsByTagName('button');
 
+let count = 0;
 for (let btn of buttons) {
   btn.addEventListener('click', () => {
-    newDiv.innerHTML = 'TEST'
+    count = count + 1;
+    newDiv.innerHTML = `TEST ${count}`
   })
 }
