@@ -4,7 +4,8 @@
   "description": "A Simple Banking Application",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "mocha",
+    "test:karma": "karma start ./karma.config.js",
     "start": "webpack-dev-server --config webpack.dev.config.js"
   },
   "author": "",
@@ -13,12 +14,14 @@
     "@babel/core": "^7.4.5",
     "@babel/plugin-syntax-class-properties": "^7.2.0",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-syntax-import-meta": "^7.2.0",
     "@babel/plugin-syntax-object-rest-spread": "^7.2.0",
     "@babel/preset-env": "^7.4.5",
-    "@babel/preset-typescript": "^7.3.3",
     "@open-wc/testing-helpers": "^0.9.5",
-    "babel-jest": "^24.8.0",
-    "jest": "^24.8.0",
+    "chai": "^4.2.0",
+    "karma": "^4.1.0",
+    "karma-mocha": "^1.3.0",
+    "mocha": "^6.1.4",
     "webpack-cli": "^3.3.2",
     "webpack-dev-server": "^3.5.0"
   },
@@ -26,24 +29,20 @@
     "html-webpack-plugin": "^3.2.0",
     "webpack": "^4.32.2"
   },
-  "jest": {
-    "moduleNameMapper": {
-      "\\.(css|scss)$": "identity-obj-proxy"
-    },
-    "moduleDirectories": [
-      "src",
-      "node_modules"
+  "mocha": {
+    "diff": true,
+    "extension": [
+      "js",
+      "ts"
     ],
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(tsx?|jsx?)$",
-    "testPathIgnorePatterns": [
-      "node_modules"
+    "spec": [
+      "{,!(node_modules)/**}/*.(test|spec).{js,ts}",
+      "/**/*.test.js"
     ],
-    "transformIgnorePatterns": [
-      "<rootDir>/client/node_modules/@open-wc/testing-helpers"
-    ],
-    "transform": {
-      "^.+\\.jsx$": "babel-jest",
-      "^.+\\.js$": "babel-jest"
-    }
+    "slow": 75,
+    "timeout": 2000,
+    "ui": "bdd",
+    "recursive": true,
+    "watch": true
   }
 }
