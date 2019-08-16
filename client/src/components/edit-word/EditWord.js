@@ -1,51 +1,50 @@
 class EditWord extends HTMLElement {
   constructor() {
     super();
+    this._shadowRoot = this.attachShadow({mode: 'open'});
+    this._form = document.createElement('form');
+    this._input = document.createElement('input');
+    this._span = document.createElement('span');
 
-    const shadowRoot = this.attachShadow({mode: 'open'});
-    const form = document.createElement('form');
-    const input = document.createElement('input');
-    const span = document.createElement('span');
+    this._style = document.createElement('style');
+    this._style.textContent = 'span { background-color: #eef; padding: 0 2px }';
 
-    const style = document.createElement('style');
-    style.textContent = 'span { background-color: #eef; padding: 0 2px }';
+    this._shadowRoot.appendChild(this._style);
+    this._shadowRoot.appendChild(this._form);
+    this._shadowRoot.appendChild(this._span);
 
-    shadowRoot.appendChild(style);
-    shadowRoot.appendChild(form);
-    shadowRoot.appendChild(span);
+    this._span.textContent = this.textContent;
+    this._input.value = this.textContent;
 
-    span.textContent = this.textContent;
-    input.value = this.textContent;
-
-    form.appendChild(input);
-    form.style.display = 'none';
-    span.style.display = 'inline-block';
-    input.style.width = span.clientWidth + 'px';
+    this._form.appendChild(this._input);
+    this._form.style.display = 'none';
+    this._span.style.display = 'inline-block';
+    this._input.style.width = this._span.clientWidth + 'px';
 
     this.setAttribute('tabindex', '0');
-    input.setAttribute('required', 'required');
+    this._input.setAttribute('required', 'required');
     this.style.display = 'inline-block';
 
     this.addEventListener('click', () => {
-      span.style.display = 'none';
-      form.style.display = 'inline-block';
-      input.focus();
-      input.setSelectionRange(0, input.value.length)
+      this._span.style.display = 'none';
+      this._form.style.display = 'inline-block';
+      this._input.focus();
+      this._input.setSelectionRange(0, this._input.value.length)
     });
 
-    form.addEventListener('submit', e => {
-      updateDisplay();
+    this._form.addEventListener('submit', e => {
+      this.updateDisplay();
       e.preventDefault();
     });
 
-    input.addEventListener('blur', updateDisplay);
+    this._input.addEventListener('blur', this.updateDisplay);
+  };
 
-    function updateDisplay() {
-      span.style.display = 'inline-block';
-      form.style.display = 'none';
-      span.textContent = input.value;
-      input.style.width = span.clientWidth + 'px';
-    }
+  updateDisplay() {
+    this._span.style.display = 'inline-block';
+    this._form.style.display = 'none';
+    this._span.textContent = this._input.value;
+    this._input.style.width = this._span.clientWidth + 'px';
   }
 }
 
