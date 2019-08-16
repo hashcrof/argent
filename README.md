@@ -1,4 +1,4 @@
 # argent
 
-* Start node server `node server.js`
-* Start webpack dev server for the frontend: first `cd client/` then `npm start`
+* Start node server `node server/server.js`
+* Start webpack dev server for the frontend: `npm start`

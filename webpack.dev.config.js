@@ -2,11 +2,11 @@ const path = require('path');
 
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const htmlWebpackPlugin = new HtmlWebpackPlugin({
-    template: path.join(__dirname, "index.html")
+    template: path.join(__dirname, "client", "index.html")
 });
 
 module.exports = {
-  entry: path.join(__dirname, "index.js") ,
+  entry: path.join(__dirname, "client", "index.js") ,
   plugins: [
     htmlWebpackPlugin
   ],
